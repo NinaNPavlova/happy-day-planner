@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Celebration | Happy Day Planner{% endblock %}
+{% block content %}
+<div class="card p-4" style="max-width: 640px;">
+  <h1 class="h3 mb-3">Add celebration</h1>
+  {% url 'celebrations:list' as cancel_url %}
+  {% include 'partials/form.html' with submit_label='Save celebration' %}
+</div>
+{% endblock %}

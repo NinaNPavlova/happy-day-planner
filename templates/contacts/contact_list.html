@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load contact_extras %}
+{% block title %}People | Happy Day Planner{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">People</h1>
+  <a href="{% url 'contacts:create' %}" class="btn btn-primary">+ Add person</a>
+</div>
+<div class="card"><div class="table-responsive">
+  <table class="table align-middle mb-0">
+    <thead><tr><th>Name</th><th>Phone</th><th>Age</th><th>Celebrations</th><th>Gifts</th><th></th></tr></thead>
+    <tbody>
+    {% for person in people %}
+      <tr>
+        <td><a href="{% url 'contacts:detail' person.pk %}">{{ person.name }} {{ person.surname }}</a></td>
+        <td>{{ person.phone }}</td>
+        <td>{{ person.year_of_birth|person_age }}</td>
+        <td>{{ person.celebrations.count }}</td>
+        <td>{{ person.gifts.count }}</td>
+        <td class="text-end">
+          <a href="{% url 'contacts:edit' person.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+          <a href="{% url 'contacts:delete' person.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="6" class="text-center text-muted py-4">No people yet. Add the first one!</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div></div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Celebrations | Happy Day Planner{% endblock %}
+{% block content %}
+<div class="mb-3">
+  <a href="?" class="btn btn-sm btn-outline-secondary">All</a>
+  <a href="?type=birthday" class="btn btn-sm btn-outline-secondary">Birthdays</a>
+  <a href="?type=name_day" class="btn btn-sm btn-outline-secondary">Name days</a>
+  <a href="?type=other" class="btn btn-sm btn-outline-secondary">Other</a>
+  <a href="?sort=title" class="btn btn-sm btn-outline-primary">Sort by title</a>
+</div>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">Celebrations</h1>
+  <a href="{% url 'celebrations:create' %}" class="btn btn-primary">+ Add celebration</a>
+</div>
+<div class="row g-3">
+  {% for celebration in celebrations %}
+    <div class="col-md-4">
+      <div class="card p-3 h-100">
+        {% include 'partials/celebration_badge.html' %}
+        <h2 class="h5 mt-2"><a href="{% url 'celebrations:detail' celebration.pk %}">{{ celebration.title|default:celebration.get_celebration_type_display }}</a></h2>
+        <p class="text-muted mb-0">{{ celebration.day_of_month }}/{{ celebration.month }}</p>
+          <p class="mb-0 small">
+  {% for person in celebration.people.all %}
+    <a href="{% url 'contacts:detail' person.pk %}">{{ person }}</a>{% if not forloop.last %}, {% endif %}
+  {% empty %}
+    <span class="text-muted">Nobody linked yet</span>
+  {% endfor %}
+</p>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted">No celebrations yet. Add the first one!</p>
+  {% endfor %}
+</div>
+{% endblock %}

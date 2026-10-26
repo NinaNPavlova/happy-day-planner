@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load contact_extras %}
+{% block title %}{{ person.name }} {{ person.surname }} | Happy Day Planner{% endblock %}
+{% block content %}
+
+<div class="card p-4">
+  <h1 class="h3">{{ person.name }} {{ person.surname }}</h1>
+  <p class="text-muted mb-1">Phone: {{ person.phone }}</p>
+  <p class="text-muted">Age: {{ person.year_of_birth|person_age }}</p>
+
+  <h2 class="h5 mt-3">Celebrations</h2>
+  <ul>
+    {% for celebration in person.celebrations.all %}
+      <li><a href="{% url 'celebrations:detail' celebration.pk %}">{{ celebration }}</a></li>
+    {% empty %}
+      <li class="text-muted">No celebrations linked.</li>
+    {% endfor %}
+  </ul>
+
+  <h2 class="h5 mt-3">Gifts</h2>
+  <ul>
+    {% for gift in person.gifts.all %}
+      <li><a href="{% url 'gifts:detail' gift.pk %}">{{ gift.gift }}</a></li>
+    {% empty %}
+      <li class="text-muted">No gifts yet.</li>
+    {% endfor %}
+  </ul>
+
+  <div class="mt-3">
+    <a href="{% url 'contacts:edit' person.pk %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'contacts:delete' person.pk %}" class="btn btn-outline-danger">Delete</a>
+    <a href="{% url 'contacts:list' %}" class="btn btn-outline-secondary">Back</a>
+  </div>
+</div>
+{% endblock %}

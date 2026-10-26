@@ -1,5 +1,10 @@
-from django.db import models
+from django.urls import reverse_lazy
+from django.views.generic import (
+    ListView, DetailView, CreateView, UpdateView, DeleteView,
+)
 
+from .forms import GiftForm
+from .models import Gift
 
 class GiftListView(ListView):
     model = Gift

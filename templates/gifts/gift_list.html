@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Gifts | Happy Day Planner{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">Gifts</h1>
+  <a href="{% url 'gifts:create' %}" class="btn btn-primary">+ Add gift</a>
+</div>
+<div class="row g-3">
+  {% for gift in gifts %}
+    <div class="col-md-4">
+      <div class="card p-3 h-100">
+        <h2 class="h5"><a href="{% url 'gifts:detail' gift.pk %}">{{ gift.gift }}</a></h2>
+        <p class="text-muted mb-2">for {{ gift.person }}</p>
+        <div>
+          <a href="{% url 'gifts:edit' gift.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+          <a href="{% url 'gifts:delete' gift.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted">No gifts yet. Add the first one!</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+:root {
+  --hd-bg: #fff8f5;
+  --hd-text: #3d3340;
+  --hd-pink: #e86a92;
+  --hd-mint: #7fd1ae;
+  --hd-gold: #f0b429;
+}
+
+body { background: var(--hd-bg); color: var(--hd-text); }
+
+.hd-navbar { background: var(--hd-pink); }
+.hd-navbar .navbar-brand,
+.hd-navbar .nav-link { color: #fff; font-weight: 600; }
+.hd-navbar .nav-link:hover { color: var(--hd-gold); }
+
+.hd-footer { background: var(--hd-mint); color: #1f3d33; }
+
+.card { border: 0; border-radius: 1rem; box-shadow: 0 4px 14px rgba(232, 106, 146, .15); }
+.btn-primary { background: var(--hd-pink); border-color: var(--hd-pink); }
+.btn-primary:hover { background: #d45580; border-color: #d45580; }
+.badge-birthday { background: var(--hd-pink); }
+.badge-nameday { background: var(--hd-gold); color: #3d3340; }
+.badge-other { background: var(--hd-mint); color: #1f3d33; }
+
+.hd-form input:not([type=checkbox]), .hd-form select, .hd-form textarea {
+  display: block; width: 100%; padding: .5rem .75rem;
+  border: 1px solid #e3d5da; border-radius: .5rem;
+}
+.hd-form ul { list-style: none; padding-left: 0; }
+.hd-calendar td { height: 90px; width: 14.28%; vertical-align: top; }
+.hd-daynum { font-weight: 600; font-size: .85rem; color: #6c5b6e; }
+.hd-event { text-decoration: none; font-size: 1.2rem; margin-right: .15rem; }
+.hd-today { background: #fff0f5; }

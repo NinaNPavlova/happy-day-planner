@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{{ celebration }} | Happy Day Planner{% endblock %}
+{% block content %}
+<div class="card p-4">
+  {% include 'partials/celebration_badge.html' %}
+  <h1 class="h3 mt-2">{{ celebration.title|default:celebration.get_celebration_type_display }}</h1>
+  <p class="text-muted">Date: {{ celebration.day_of_month }}/{{ celebration.month }}</p>
+
+  <h2 class="h5">People</h2>
+  <ul>
+    {% for person in celebration.people.all %}
+      <li><a href="{% url 'contacts:detail' person.pk %}">{{ person }}</a></li>
+    {% empty %}
+      <li class="text-muted">Nobody linked yet.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'celebrations:list' %}" class="btn btn-outline-secondary mt-2">Back</a>
+</div>
+{% endblock %}

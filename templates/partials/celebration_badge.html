@@ -1,0 +1,7 @@
+{% if celebration.celebration_type == 'birthday' %}
+  <span class="badge badge-birthday">&#127874; {{ celebration.get_celebration_type_display }}</span>
+{% elif celebration.celebration_type == 'name_day' %}
+  <span class="badge badge-nameday">&#127873; {{ celebration.get_celebration_type_display }}</span>
+{% else %}
+  <span class="badge badge-other">&#11088; {{ celebration.get_celebration_type_display }}</span>
+{% endif %}
